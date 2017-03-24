@@ -1,25 +1,29 @@
-# django-quantity-field
+=====================
+django-quantity-field
+=====================
 
 A Django application providing model and form field
 to accept and store multidimensional physical quantities.
 
 
-## Requirements
+Requirements
+============
 
-This application depends on `Pint` library, used for operate
+This application depends on ``Pint`` library, used for operate
 and manipulate physical quantities. Full documentation is
 available at http://pint.readthedocs.org/
 
 
-## Installation
+Installation
+============
 
-1. Install django-quantity-field using pip: `pip install -e git://github.com/tapeit/django-quantity-field`.
-2. Add `'quantity_field'` to your `INSTALLED_APPS` setting.
+Install django-quantity-field using pip: ``pip install django-quantity-field``.
 
 
-## Usage
+Usage
+=====
 
-In order to use a quantity field add it to your model definition:
+In order to use a quantity field add it to your model definition::
 
     from quantity_field import ureg
     from quantity_field.fields import MultiQuantityField
@@ -28,10 +32,10 @@ In order to use a quantity field add it to your model definition:
         size = MultiQuantityField(dim=3, units=(ureg.mm, ureg.cm, ureg.m))
         weight = MultiQuantityField(units=(ureg.g, ureg.kg))
 
-`django-quantity-field` comes with the custom form field that is
+``django-quantity-field`` comes with the custom form field that is
 used by default for editing in admin or in your forms.
 
-Accessing `MultiQuantityField` field will returns `MultiQuantity` object
+Accessing ``MultiQuantityField`` field will returns ``MultiQuantity`` object
 that can be used as ordinary Pint quantities.
 
     >>> from quantity_field.base import MultiQuantity
@@ -44,10 +48,11 @@ that can be used as ordinary Pint quantities.
     [<Quantity(2.0, 'meter')>, <Quantity(5.5, 'meter')>, <Quantity(4.0, 'meter')>]
 
 
-## Warning
+Warning
+=======
 
 Don't forget there are no global units in Pint. To use Pint quantities
-in your project side by side with `django-quantity-field` use
+in your project side by side with ``django-quantity-field`` use
 Pint registry from our application.
 
     >>> from quantity_field import ureg
