@@ -1,7 +1,8 @@
 # coding: utf-8
 
-from django.utils.encoding import python_2_unicode_compatible
+from six import python_2_unicode_compatible
 from quantity_field import ureg
+from functools import reduce
 
 
 @python_2_unicode_compatible
@@ -19,10 +20,9 @@ class MultiQuantity(ureg.Quantity):
         >>> square = MultiQuantity.from_list(4, 8, ureg.m)
     """
 
-    SEPARATOR = '*'     # Used for serialization and deserialization
+    SEPARATOR = '*'  # Used for serialization and deserialization
 
     def __init__(self, *args, **kwargs):
-        super(MultiQuantity, self).__init__(*args, **kwargs)
         self._values = [self]
 
     def __str__(self):

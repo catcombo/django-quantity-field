@@ -33,7 +33,7 @@ class MultiQuantityFormField(MultiValueField):
         dim = kwargs.pop('dim', 1)
         choices = kwargs.pop('choices', None)
 
-        if not isinstance(dim, (int, long)) or (dim < 1):
+        if not isinstance(dim, int) or (dim < 1):
             raise ValidationError(self.error_messages['invalid_dim'])
 
         if not is_iterable(choices) or \
