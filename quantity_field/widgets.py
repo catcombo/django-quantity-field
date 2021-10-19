@@ -15,6 +15,8 @@ class MultiQuantityWidget(MultiWidget):
         >>> weight = MultiQuantityWidget(dim=1, choices=[('gram', 'g'), ('kilogram', 'kg')])
     """
 
+    template_name = 'layout/widgets/multi_widgets.html'
+
     def __init__(self, dim, choices, *args, **kwargs):
         widgets = [TextInput() for i in range(dim)] + [Select(choices=choices)]
         super(MultiQuantityWidget, self).__init__(widgets, *args, **kwargs)

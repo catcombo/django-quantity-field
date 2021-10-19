@@ -1,9 +1,8 @@
 import io
 
 from os import path
-from setuptools import setup
+from setuptools import setup, find_packages
 from quantity_field import __version__
-
 
 here = path.abspath(path.dirname(__file__))
 
@@ -37,6 +36,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     keywords='django multiple quantity field',
-    packages=['quantity_field'],
+    packages=find_packages(include=["quantity_field", "quantity_field.*"]),
     install_requires=['Pint'],
+    include_package_data=True,
 )
