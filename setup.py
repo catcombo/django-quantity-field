@@ -37,6 +37,6 @@ setup(
     ],
     keywords='django multiple quantity field',
     packages=find_packages(include=["quantity_field", "quantity_field.*"]),
-    install_requires=['Pint'],
+    install_requires=['pint'],
     include_package_data=True,
 )
