@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 from django.utils.itercompat import is_iterable
 from django.utils.translation import ugettext_lazy as _
 
-from quantity_field import ureg
+from quantity_field import ureg, DIMENSIONALITY
 from quantity_field.base import MultiQuantity
 from quantity_field.widgets import MultiQuantityWidget
 
@@ -41,8 +41,9 @@ class MultiQuantityFormField(MultiValueField):
                 any(not isinstance(c[0], ureg.Unit) for c in choices):
             raise ValidationError(self.error_messages['invalid_choices'])
 
-        if any(c[0].dimensionality != choices[0][0].dimensionality for c in choices):
-            raise ValidationError(self.error_messages['different_units'])
+        if DIMENSIONALITY:
+            if any(c[0].dimensionality != choices[0][0].dimensionality for c in choices):
+                raise ValidationError(self.error_messages['different_units'])
 
         fields = [FloatField() for i in range(dim)] + [ChoiceField(choices=[(str(u), c) for u, c in choices])]
 

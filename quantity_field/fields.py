@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.itercompat import is_iterable
 from django.utils.translation import gettext as _
 
-from quantity_field import ureg
+from quantity_field import ureg, DIMENSIONALITY
 from quantity_field.base import MultiQuantity
 from quantity_field.forms import MultiQuantityFormField
 
@@ -41,8 +41,9 @@ class MultiQuantityField(models.Field):
 
         self.units = list(map(lambda u: isinstance(u, str) and ureg(u) or u, self.units))
 
-        if any(u.dimensionality != self.units[0].dimensionality for u in self.units):
-            raise ValidationError(self.error_messages['different_units'])
+        if DIMENSIONALITY:
+            if any(u.dimensionality != self.units[0].dimensionality for u in self.units):
+                raise ValidationError(self.error_messages['different_units'])
 
         kwargs['max_length'] = 255
         super(MultiQuantityField, self).__init__(*args, **kwargs)
