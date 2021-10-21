@@ -54,15 +54,15 @@ class MultiQuantity(ureg.Quantity):
             >>> volume = MultiQuantity.from_list(2, 5.5, 4, 'meter')
             >>> square = MultiQuantity.from_list(4, 8, ureg.m)
         """
-
-        value = reduce((lambda x, y: x * y), args[:-1])
-        base_units = isinstance(args[-1], ureg.Unit) and args[-1] or ureg(args[-1])
-        units = pow(base_units, len(args[:-1]))
-
-        mq = cls(value, units)
-        mq._values = [float(v) * base_units for v in args[:-1]]
-
-        return mq
+        
+        if args[:-1]:
+            value = reduce((lambda x, y: x * y), args[:-1])
+            base_units = isinstance(args[-1], ureg.Unit) and args[-1] or ureg(args[-1])
+            units = pow(base_units, len(args[:-1]))
+            if value:
+                mq = cls(value, units)
+                mq._values = [float(v) * base_units for v in args[:-1]]
+                return mq
 
     @classmethod
     def from_string(cls, data):
