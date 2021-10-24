@@ -19,6 +19,10 @@ Installation
 
 Install django-quantity-field using pip: ``pip install django-quantity-field``.
 
+and add to settings.py INSTALLED_APPS
+
+``quantity_field``
+
 
 Usage
 =====

@@ -1,0 +1,14 @@
+<div class="form-group row no-gutters">
+    <div class="col-6">
+        {% with widget=widget.subwidgets.0 %}
+            {% include widget.template_name %}
+        {% endwith %}
+    </div>
+    <div class="col-6">
+        {% with widget=widget.subwidgets.1 %}
+            {% include widget.template_name %}
+        {% endwith %}
+    </div>
+
+</div>
+	

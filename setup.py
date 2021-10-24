@@ -1,9 +1,8 @@
 import io
 
 from os import path
-from setuptools import setup
+from setuptools import setup, find_packages
 from quantity_field import __version__
-
 
 here = path.abspath(path.dirname(__file__))
 
@@ -25,18 +24,14 @@ setup(
         'Intended Audience :: Developers',
         'Environment :: Web Environment',
         'Framework :: Django',
-        'Framework :: Django :: 1.8',
-        'Framework :: Django :: 1.9',
-        'Framework :: Django :: 1.10',
-        'Framework :: Django :: 1.11',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     keywords='django multiple quantity field',
-    packages=['quantity_field'],
-    install_requires=['Pint'],
+    packages=find_packages(include=["quantity_field", "quantity_field.*"]),
+    install_requires=['pint'],
+    include_package_data=True,
 )
